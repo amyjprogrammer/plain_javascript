@@ -27,6 +27,17 @@ function reset(){
     document.getElementById('ageInDays').remove();
 }
 
+//Code for Generating Random Cats
+
+function randoCat(){
+    let catImage = document.createElement('img');
+    let catDiv = document.getElementById('flex-cat-gen');
+
+    //link to create the random cats
+    catImage.src="http://thecatapi.com/api/images/get?format=src&type=gif&size=small";
+    catDiv.appendChild(catImage);
+}
+
 
 
 
