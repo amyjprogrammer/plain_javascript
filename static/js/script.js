@@ -35,7 +35,17 @@ function randoCat(){
 
     //link to create the random cats
     catImage.src="http://thecatapi.com/api/images/get?format=src&type=gif&size=small";
+    catImage.setAttribute('class', 'classCatImages');
     catDiv.appendChild(catImage);
+}
+
+//option to delete all cats
+function deleteAllCats(){
+    let catElements = document.getElementsByClassName('classCatImages');
+    while(catElements.length > 0){
+        catElements[0].parentNode.removeChild(catElements[0]);
+        location.reload();
+    }
 }
 
 
