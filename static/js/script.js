@@ -35,13 +35,13 @@ function randoCat(){
 
     //link to create the random cats
     catImage.src="http://thecatapi.com/api/images/get?format=src&type=gif&size=small";
-    catImage.setAttribute('class', 'classCatImages');
+    catImage.setAttribute('name', 'classCatImages');
     catDiv.appendChild(catImage);
 }
 
 //option to delete all cats
 function deleteAllCats(){
-    let catElements = document.getElementsByClassName('classCatImages');
+    let catElements = document.getElementsByName('classCatImages');
     while(catElements.length > 0){
         catElements[0].parentNode.removeChild(catElements[0]);
         location.reload();
@@ -127,6 +127,66 @@ function rpsFrontEnd(humanImageChoice, botImageChoice, finalMessage){
     document.getElementById('flex-box-rps-div').appendChild(messageDiv);
     document.getElementById('flex-box-rps-div').appendChild(botDiv);
 }
+
+//Challenge 4: Change the Color of All Buttons
+
+let all_buttons = document.getElementsByTagName('button');
+console.log(all_buttons);
+
+//Copying the original colors for the buttons
+let copyAllButtons = [];
+for(let i = 0; i < all_buttons.length; i++){
+    copyAllButtons.push(all_buttons[i].classList[1]);
+}
+console.log(copyAllButtons);
+
+//master function that determines what happens after someone selects an option
+function buttonColorChange(buttonThingy){
+    if (buttonThingy.value === 'red') {
+        buttonsRed();
+    } else if (buttonThingy.value === 'green'){
+        buttonsGreen();
+    } else if (buttonThingy.value === 'reset') {
+        buttonColorReset();
+    } else if (buttonThingy.value === "random") {
+        randomColors();
+    }    
+}
+
+//turn all buttons Red using the Class List
+function buttonsRed() {
+    for (let i = 0; i < all_buttons.length; i++) {
+        all_buttons[i].classList.remove(all_buttons[i].classList[1]);
+        all_buttons[i].classList.add('btn-danger');
+    }
+}
+
+//turn all buttons Green
+function buttonsGreen() {
+    for (let i = 0; i < all_buttons.length; i++) {
+        all_buttons[i].classList.remove(all_buttons[i].classList[1]);
+        all_buttons[i].classList.add('btn-success');
+    }
+}
+
+//reseting all the buttons
+function buttonColorReset(){
+    for (let i = 0; i < all_buttons.length; i++){
+        all_buttons[i].classList.remove(all_buttons[i].classList[1]);
+        all_buttons[i].classList.add(copyAllButtons[i]);
+    }
+}
+
+function randomColors(){
+    let choices = ['btn-primary', "btn-success", "btn-danger", "btn-warning"]
+    for (let i = 0; i < all_buttons.length; i++){
+        let randomNumber = Math.floor(Math.random() * 4);
+        all_buttons[i].classList.remove(all_buttons[i].classList[1]);
+        all_buttons[i].classList.add(choices[randomNumber]);
+    }
+    
+}
+
 
 
 
